@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% if blog is not None %}
+        <form action="{% url 'update' blog.id %}" method="post" name="blog_form">
+    {% else %}
+        <form action="{% url 'create' %}" method="post" name="blog_form">
+    {% endif %}
+        {% csrf_token %}
+        <p>{{ blog.id }}</p>
+        <p>{{ blog_form.title }}</p>
+        <p>{{ blog_form.content }}</p>
+        <div style="text-align: center">
+            <input class="btn btn-default" style="display:inline-block" type="submit" value="제출">
+        </div>
+    </form>
+    <br>
+{% endblock content %}

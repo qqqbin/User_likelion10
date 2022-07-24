@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <script type="text/javascript">
+        function check_delete() {
+            var check = confirm("삭제하겠습니까?");
+            if (check) {
+                window.location = "{% url 'delete' blog_id=blog.id %}";
+            }
+        }
+    </script>
+    <div class="post-preview">
+        <h2 class="post-title">{{ blog.title }}</h2>
+        <h3 class="post-subtitle">{{ blog.content }}</h3>
+        <p class="post-meta">작성 시간: {{ blog.create_at }} 수정 시간: {{ blog.update_at }}</p>
+    </div>
+    <!-- Pager-->
+    <div style="display: inline-flex">
+        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'update' blog_id=blog.id %}">수정</a></div>
+        <div class="d-flex justify-content-end mb-4" style="margin-left: 30px"><a class="btn btn-primary text-uppercase" onclick="check_delete()">삭제</a></div>
+    </div>
+{% endblock content %}
